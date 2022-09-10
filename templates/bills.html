@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if visi_saskaitos %}
+{% for saskaita in visi_saskaitos %}
+<hr>
+<p><strong>Pavadinimas:</strong> {{saskaita.pavadinimas}}</p>
+<p><strong>Suma:</strong> {{saskaita.suma}}</p>
+{% if saskaita.group %}
+<p><strong>Grupės:</strong></p>
+<p>{{saskaita.group.pavadinimas}}</p>
+{% endif %}
+
+{% endfor %}
+{% endif %}
+<hr>
+<p><a href="{{ url_for('new_child')}}">Nauja sąskaita</a></p>
+
+{% endblock %}

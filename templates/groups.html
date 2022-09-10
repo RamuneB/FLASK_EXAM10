@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if visi_groups %}
+{% for group in visi_groups %}
+<hr>
+<p><strong>Pavadinimas:</strong> {{group.pavadinimas}}</p>
+
+{% if group.saskaitos %}
+<p><strong>Sąskaitos:</strong></p>
+{% for saskaita in group.saskaitos %}
+<p>{{saskaita.pavadinimas}}</p>
+{% endfor %}
+{% endif %}
+
+{% endfor %}
+{% endif %}
+<hr>
+<p><a href="{{ url_for('new_parent')}}">Nauja grupė</a></p>
+
+{% endblock %}
