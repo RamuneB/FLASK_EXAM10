@@ -11,7 +11,7 @@
 <p><strong>Grupės:</strong></p>
 <p>{{saskaita.group.pavadinimas}}</p>
 {% endif %}
-
+<a href="{{ url_for('istrinti_saskaita', id=saskaita['id']) }}">Ištrinti</a>
 {% endfor %}
 {% endif %}
 <hr>

@@ -4,14 +4,15 @@
 
 <form method="post" action="#">
     {{ form.hidden_tag() }}
+    
     <div class="form-group">
         {{ form.pavadinimas.label(class="form-control-label") }}
-        {{ form.pavadinimas(class="form-control") }}
+        {{ form.pavadinimas(class="form-control", value=group.pavadinimas) }}
     </div>
-    <h3>Pasirenkama sąskaitos grupė</h3>
+    
     <div class="form-group">
         {{ form.saskaitos.label(class="form-control-label") }}
-        {{ form.saskaitos(class="form-control") }}
+        {{ form.saskaitos(class="form-control", value=group.saskaitos) }}
     </div>
     {{ form.submit }}
 </form>

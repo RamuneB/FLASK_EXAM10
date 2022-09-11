@@ -35,7 +35,7 @@ class GroupForm(FlaskForm):
     submit = SubmitField('Įvesti')
 
 class SaskaitaForm(FlaskForm):
-    apibudinimas = StringField('Apibūdinimas', [DataRequired()])
+    apibudinimas = StringField('Apibūdinimas(sąskaita priskiriama sąskaitų grupei)', [DataRequired()])
     #pastabos = StringField('Pastabos', [DataRequired()])
     suma  = IntegerField('Suma', [DataRequired()])
     group = QuerySelectField(query_factory=group_query, get_label="pavadinimas", get_pk=get_pk)

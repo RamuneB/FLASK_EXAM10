@@ -11,9 +11,11 @@
 <p><strong>Sąskaitų apibūdinimas:</strong></p>
 {% for saskaita in group.saskaitos %}
 <p>{{saskaita.apibudinimas}}</p>
+
 {% endfor %}
 {% endif %}
-
+<a href="{{ url_for('istrinti_grupe', id=group['id']) }}">Ištrinti</a>
+<a href="{{ url_for('redaguoti_grupe', id=group['id']) }}">Redaguoti</a>
 {% endfor %}
 {% endif %}
 <hr>

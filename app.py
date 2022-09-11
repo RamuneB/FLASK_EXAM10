@@ -133,6 +133,35 @@ def new_parent():
         return redirect(url_for('parents'))
     return render_template("prideti_group.html", form=forma)
 
+@app.route("/istrinti_group/<int:id>")
+def istrinti_grupe(id):
+    uzklausa = Group.query.get(id)
+    db.session.delete(uzklausa)
+    db.session.commit()
+    return redirect(url_for('parents'))
+
+@app.route("/redaguoti_group/<int:id>", methods=['GET', 'POST'])
+def redaguoti_grupe(id):
+    forma = forms.GroupForm()
+    group = Group.query.get(id)
+    if forma.validate_on_submit():
+        #grupe.vardas = forma.vardas.data
+        group.pavadinimas = forma.pavadinimas.data
+       
+        group.saskaitos = []
+        for saskaita in forma.saskaitos.data:
+            priskirta_saskaita = Saskaita.query.get(saskaita.id)
+            group.saskaitos.append(priskirta_saskaita)
+        db.session.commit()
+        return redirect(url_for('parents'))
+    return render_template("redaguoti_group.html", form=forma, group=group)
+
+@app.route("/istrinti_saskaita/<int:id>")
+def istrinti_saskaita(id):
+    uzklausa = Saskaita.query.get(id)
+    db.session.delete(uzklausa)
+    db.session.commit()
+    return redirect(url_for('children'))
 
 @app.route("/naujas_saskaita", methods=["GET", "POST"])
 def new_child():
