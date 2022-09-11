@@ -42,7 +42,7 @@ class Group(db.Model):
 class Saskaita(db.Model):
     __tablename__ = "saskaita"
     id = db.Column(db.Integer, primary_key=True)
-    pavadinimas = db.Column("Pavadinimas", db.String)
+    apibudinimas = db.Column("Apibūdinimas", db.String)
     suma = db.Column(db.Integer, nullable=False)
     #pastabos = db.Column("Pastabos", db.String)
     group_id = db.Column(db.Integer, db.ForeignKey("group.id"))
@@ -70,7 +70,7 @@ def register():
         db.session.commit()
         # flash('Sėkmingai prisiregistravote! Galite prisijungti', 'success')
         return redirect(url_for('index'))
-    return render_template('registracija.html', form=form)
+    return render_template('register.html', form=form)
 
 
 @app.route('/prisijungti', methods=['GET', 'POST'])
@@ -84,7 +84,7 @@ def login():
             return redirect(next_page) if next_page else redirect(url_for('parents'))
         # else:
             # flash('Prisijungti nepavyko. Patikrinkite el. paštą ir slaptažodį', 'danger')
-    return render_template('prisijungimas.html', form=form)
+    return render_template('login.html', form=form)
 
 
 @app.route("/atsijungti")
@@ -139,7 +139,7 @@ def new_child():
     db.create_all()
     forma = forms.SaskaitaForm()
     if forma.validate_on_submit():
-        naujas_saskaita = Saskaita(pavadinimas=forma.pavadinimas.data,
+        naujas_saskaita = Saskaita(apibudinimas=forma.apibudinimas.data,
                                 suma=forma.suma.data)
                                 
         db.session.add(naujas_saskaita)

@@ -31,11 +31,11 @@ def group_query():
 class GroupForm(FlaskForm):
     pavadinimas = StringField('Pavadinimas', [DataRequired()])
     #pavarde = StringField('Pavardė', [DataRequired()])
-    saskaitos = QuerySelectMultipleField(query_factory=saskaita_query, get_label="pavadinimas", get_pk=get_pk)
+    saskaitos = QuerySelectMultipleField(query_factory=saskaita_query, get_label="apibudinimas", get_pk=get_pk)
     submit = SubmitField('Įvesti')
 
 class SaskaitaForm(FlaskForm):
-    pavadinimas = StringField('Pavadinimas', [DataRequired()])
+    apibudinimas = StringField('Apibūdinimas', [DataRequired()])
     #pastabos = StringField('Pastabos', [DataRequired()])
     suma  = IntegerField('Suma', [DataRequired()])
     group = QuerySelectField(query_factory=group_query, get_label="pavadinimas", get_pk=get_pk)
